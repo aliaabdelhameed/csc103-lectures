@@ -1,0 +1,30 @@
+Lecture 00
+==========
+
+Basic components and functionality of the system
+------------------------------------------------
+
+Roughly speaking, you have the following things inside your computer:
+
+* a huge list of numbers (main memory)
+* circuitry to perform simple instructions: +,-,*,/ read, store... (the CPU)
+
+Contrast this picture with high level applications -- looks nothing alike!
+Question: how to bridge the gap between what we imagine (text, graphics,
+sounds...) and what the computer understands (big list of numbers; arithmetic,
+etc...)?
+
+Abstraction
+-----------
+
+The system is built upon many layers of *abstraction*.  Each layer hides more
+and more details regarding *how* things are done, and focuses more on *what*
+each thing can do.  Unfortunately, even with a high-level language like C++, a
+fair bit of imagination will be required to express yourself.  You will likely
+find the amount of detail and precision needed to correctly express your ideas
+rather unintuitive.  (In communication with other humans, quite a lot of
+*tacit knowledge* is assumed between the parties; the computer, lacking such
+knowledge, must have things spelled out quite explicitly.)
+
+
+~~ vim:syntax=rst
