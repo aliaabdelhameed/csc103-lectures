@@ -4,7 +4,6 @@ using std::cout;
 
 int main()
 {
-	/* print enthusiastic message: */
 	cout << "hello world!\n";
 	return 0;
 }
