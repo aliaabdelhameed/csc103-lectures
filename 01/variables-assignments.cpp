@@ -33,18 +33,22 @@ int main()
 	 * Indeed, variables can't begin with a number.  TODO: uncomment the
 	 * following line and try to compile: */
 	// int 22x;
+	/* the above gives an error which states
+	 * error: invalid suffix "x" on integer constant */
 
 	/* if we want to keep the fractional part, we need
 	 * a different datatype, like double or float. */
 	double y = x / 14;
-	cout << y << "\n"; /* still 0.  x/14 was still an integer
+	cout << "double y = x / 14 == " << y << "\n"; /* still 0.  x/14 was still an integer
 						  (0) and was converted to double afterward. */
 
 	cout << "x / 14.0 == " << x / 14.0 << "\n";
 	/* NOTE: type of 14.0 is not int.  Also note
-	   that x will be "upgraded" for the division. */
+		that x will be "upgraded" for the division. */
 	int z = x / 14.0;
-	cout << z << "\n";
+	cout << "int z = x / 14.0 == " << z << "\n";
+
+	cout << "\n";
 
 	/* how much space do our types take?? */
 	cout << "double takes " << sizeof(double) << " bytes\n";
@@ -52,10 +56,22 @@ int main()
 	cout << "int takes " << sizeof(int) << " bytes\n";
 	cout << "long takes " << sizeof(long) << " bytes\n";
 
+	cout << "\n";
+
 	/* NOTE: some basic laws of algebra do NOT hold up with messy
 	 * floating point types.  Consider the cancellation law:
 	 * a+x == b+x ==> a == b.  TODO: find an example in C++ where
 	 * this doesn't work out. */
+
+	/*
+ 	 * double a, b, c;
+	 * a = 10.3333;
+	 * b = 10.3333;
+	 * c = 3.6666;
+	 * double sum1 = a + c;
+	 * double sum2 = b + c;
+	 * cout << "a == " << sum1 - c << "\n";
+	 * cout << "b == " << sum2 - c << "\n"; */
 
 	/* Other non-number types: strings */
 	string s = "hello there!\n";
