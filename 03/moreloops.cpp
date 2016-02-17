@@ -46,7 +46,7 @@ int main()
 	 * */
 	/* we'll reuse n and k above to store the input: */
 	cout << "enter 2 integers for gcd thing: ";
-	cin >> n >> k;
+	cin >> n>> k;
 	int gcd; /* holds largest candidate gcd not yet tested. */
 	if (n < k) gcd = n;
 	else       gcd = k;
@@ -60,7 +60,17 @@ int main()
 	/* TODO: rewrite the above without while(true) (or while(1) etc...)
 	 * and without a break statement.  Just replace the 'true' with
 	 * the negation of the condition that breaks the loop! */
-	
+	cout << "Enter two integers to find the GCD: ";
+	cin >> n >> k;
+	if (n < k) {
+		gcd = n;
+	} else {
+		gcd = k;
+	}
+	while (n % gcd != 0 || k % gcd != 0) {
+		gcd--;
+	}
+	cout << "GCD is " << gcd << endl;
 
 	/* exercise: brute force test for perfect cubes.  Check if
 	 * n = k^3 for some integer k.  */
@@ -75,12 +85,41 @@ int main()
 	}
 	/* figure out why the loop ended.
 	 * The break statement?  Or did the search fail? */
+	
 	if (k <= n)
 		cout << k << " is the cube root of " << n << ".\n";
 	else
 		cout << n << " was not a cube.\n";
 
+	/* TODO: write a loop that prints the sum of the first n odd cubes. */
+	cout << "Enter an integer n and get the first n odd cubes: ";
+	cin >> n;
+	int x = 1;
+	for (int i = 0; i < n; i++) {
+		cout << x*x*x << endl;
+		x += 2;
+	}
 
+	/* TODO: write code that gets an integer n from the user and prints out
+	 * the n-th term of the fibonacci sequence. */
+	cout << "Enter an integer n and get the nth term of the fibonacci sequence: ";
+	cin >> n;
+	int a,b,temp;
+	a = 0;
+	b = 1;
+	if (n == 1) {
+		cout << 0 << endl;
+	} else if (n == 2) {
+		cout << 1 << endl;
+	} else {
+		for (int i = 2; i < n; i++) {
+			temp = a;
+			a = b;
+			b += temp;
+		}
+	}
+	cout << "The " << n << "th fibonacci number is: " << b << endl;
+	
 	/* exercise: read an arbitrary list of integers and then print
 	 * the max, min, and mean. */
 	/* IDEA imagine someone is speaking these numbers to you, and
@@ -102,7 +141,8 @@ int main()
 	cout << "enter integers for max/min/mean (end list with ctrl-d)\n";
 	/* read one number first to set max and min: */
 	cin >> n;
-	max = min = n;
+	max = min = sum = n;
+	count++;
 	/* NOTE: meaning of all our variables has been set!
 	 * Now do one little increment of work in a loop, and
 	 * make sure we maintain the meaning of these variables. */
@@ -114,12 +154,12 @@ int main()
 	}
 	/* TODO: print answer.  Be sure to use a typecast in the division,
 	 * else you'll lose the fractional part of the average. */
+	cout << "Max: " << max << endl;
+	cout << "Min: " << min << endl;
+	cout << "Sum: " << sum << endl;
+	cout << "Count: " << count << endl;
+	cout << "Mean: " << double (sum) / count << endl;
 
-
-	/* TODO: write a loop that prints the sum of the first n odd cubes. */
-
-	/* TODO: write code that gets an integer n from the user and prints out
-	 * the n-th term of the fibonacci sequence. */
 
 	return 0;
 }
