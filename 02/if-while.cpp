@@ -56,6 +56,13 @@ int main()
 	}
 	/* TODO: write a corresponding example with n = 0, which will never
 	 * print the message, even if if n really was 0. */
+	cout << "Enter a number: ";
+	int n2;
+	cin >> n2;
+	if ((n2 = 0)) {
+		cout << "n2 was 0\n";
+	}
+
 	/* TODO: remove the extra parenthesis around the assignment and
 	 * make sure compiler warning makes sense. */
 
@@ -140,6 +147,28 @@ int main()
 	 * the minimal value, the maximal value, and the average value
 	 * of all the (non-negative) integers that were entered.
 	 * (Hint: you don't have to store all those numbers at once... )*/
+	cout << "Enter some integers. Stop by entering a negative: ";
+	int min, max, count2;
+	double sum;
+	min = max = sum = count2 = 0;
+	while (cin >> n) {
+		if (n >= 0) {
+			if (n < min) {
+				min = n;
+			} 
+			if (n > max) {
+				max = n;
+			}
+			sum += n;
+			count2++;
+		} else {
+			cout << "Min: " << min << endl;
+			cout << "Max: " << max << endl;
+			cout << "Average: " << double(sum / count2) << endl;
+			break;
+		}
+	}
+
 	return 0;
 }
 
