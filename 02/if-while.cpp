@@ -148,11 +148,12 @@ int main()
 	 * of all the (non-negative) integers that were entered.
 	 * (Hint: you don't have to store all those numbers at once... )*/
 	cout << "Enter some integers. Stop by entering a negative: ";
-	int min, max, count2;
-	double sum;
-	min = max = sum = count2 = 0;
+	int min, max, sum;
+	min = max = sum = count = 0;
+	cin >> n;
+	min = max = n;
 	while (cin >> n) {
-		if (n >= 0) {
+		if (n >= 0) { // n is positive
 			if (n < min) {
 				min = n;
 			} 
@@ -160,11 +161,11 @@ int main()
 				max = n;
 			}
 			sum += n;
-			count2++;
-		} else {
+			count++;
+		} else { // n is negative
 			cout << "Min: " << min << endl;
 			cout << "Max: " << max << endl;
-			cout << "Average: " << double(sum / count2) << endl;
+			cout << "Average: " << double(sum) / count << endl;
 			break;
 		}
 	}
