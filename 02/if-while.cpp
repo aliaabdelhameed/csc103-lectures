@@ -149,9 +149,10 @@ int main()
 	 * (Hint: you don't have to store all those numbers at once... )*/
 	cout << "Enter some integers. Stop by entering a negative: ";
 	int min, max, sum;
-	min = max = sum = count = 0;
+	sum = count = 0;
 	cin >> n;
 	min = max = n;
+	count++;
 	while (cin >> n) {
 		if (n >= 0) { // n is positive
 			if (n < min) {
