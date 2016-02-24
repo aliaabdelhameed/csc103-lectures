@@ -3,6 +3,7 @@
 using std::cin;
 using std::cout;
 using std::endl;
+#include <cmath>
 
 /* syntax:
  * datatype functionname(parameterlist) { c++ statements...}
@@ -61,6 +62,12 @@ double h(double& x) {
 	 * */
 }
 
+int max(int a, int b, int c);
+double average(double a, double b, double c);
+bool isPrime(int a);
+void swap(int& a, int& b);
+int nthFib1(int n);
+int nthFib2(int n);
 
 int main()
 {
@@ -77,23 +84,95 @@ int main()
 	 * you can make them share memory if you want...
 	 * */
 
+	cout << max(34, 20, 1) << endl;
+
+	cout << average(2.5, 4.5, 6) << endl;
+	
+	cout << isPrime(2) << endl;
+	cout << isPrime(5) << endl;
+	cout << isPrime(9) << endl;
+
+	int x = 5, y = 10;
+	swap(x,y);
+	cout << "x = " << x << endl;
+	cout << "y = " << y << endl;
+
+	cout << nthFib1(5) << endl;
+	cout << nthFib1(8) << endl;
+
+	cout << nthFib2(5) << endl;
+	cout << nthFib2(8) << endl;
 	return 0;
 }
 
 /* TODO: write a function that takes 3 integers and returns
  * the maximal value */
+int max(int a, int b, int c) {
+	int max = a;
+	if (b > max) {
+		max = b;
+	}
+	if (c > max) {
+		max = c;
+	}
+	return max;
+}
 
 /* TODO: write a function that takes 3 doubles and returns the average value.
  * also write code in main to test it.  */
+double average(double a, double b, double c) {
+	double sum = a + b + c;
+	return sum / 3;
+}
+
 /* TODO: write an isPrime function that takes an integer and returns a boolean
  * value indicating whether or not it is prime.  */
+bool isPrime(int a) {
+	if (a == 2) {
+		return true;
+	} else if (a == 1 || a % 2 == 0) {
+		return false;
+	} else {
+		for (int i = 3; i <= sqrt(a); i++) {
+			if (a % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+}
 
 /* TODO: write a function that takes two integer parameters and swaps the
  * contents, i.e., if x=2 and y=5, then after calling swap(x,y), y=2 and x=5
  * Also write test code in main! */
+void swap(int& a, int& b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
 
 /* TODO: write a function that takes an integer n and returns the
  * nth term in the Fibonacci sequence. */
+
+// method 1
+int nthFib1(int n) {
+	// starts with 0 and 1 in this case
+	if (n == 1) { // 0 is the 1st term
+		return 0;
+	} else if (n == 2) { // 1 is the 2nd term
+		return 1;
+	} else {
+		int first, second, next;
+		first = 0;
+		second = 1;
+		for (int i = 3; i <= n; i++) {
+			next = first + second;
+			first = second; // shift the numbers down
+			second = next; // update second with the sum of the previous two nums
+		}
+		return second;
+	}
+}
 
 /* TODO: (WARNING: THIS IS NOT EASY. Only attempt this if you are bored.)
  * The previous exercise asked for you to compute the nth term of the
@@ -104,3 +183,14 @@ int main()
  * log(n) steps!  To find it, you'll probably need a hint or two to even get
  * started.  Ask me if you're interested.
  * */
+
+// method 2: recursion
+int nthFib2(int n) {
+	if (n == 1) { // 0 is 1st term
+		return 0;
+	} else if (n == 2) { // 1 is 2nd term
+		return 1;
+	} else {
+		return (nthFib2(n-1) + nthFib2(n-2));
+	}
+}
