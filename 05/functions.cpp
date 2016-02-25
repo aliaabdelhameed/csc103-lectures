@@ -68,6 +68,7 @@ bool isPrime(int a);
 void swap(int& a, int& b);
 int nthFib1(int n);
 int nthFib2(int n);
+int nthFib3(int first, int second, int n);
 
 int main()
 {
@@ -99,9 +100,16 @@ int main()
 
 	cout << nthFib1(5) << endl;
 	cout << nthFib1(8) << endl;
+	cout << nthFib1(20) << endl;
 
 	cout << nthFib2(5) << endl;
 	cout << nthFib2(8) << endl;
+	cout << nthFib2(20) << endl;
+
+	cout << nthFib3(0,1,5) << endl;
+	cout << nthFib3(0,1,8) << endl;
+	cout << nthFib3(0,1,20) << endl;
+
 	return 0;
 }
 
@@ -192,5 +200,17 @@ int nthFib2(int n) {
 		return 1;
 	} else {
 		return (nthFib2(n-1) + nthFib2(n-2));
+	}
+}
+
+// method 3: tail recursion
+// when called, it should always be nthFib3(0,1,n)
+int nthFib3(int first, int second, int n) {
+	if (n == 1) {
+		return first;
+	} else if (n == 2) {
+		return second;
+	} else {
+		return nthFib3(second, first + second, n - 1);
 	}
 }
