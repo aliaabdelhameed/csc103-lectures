@@ -47,7 +47,7 @@ int main()
 	while (cin >> s) {
 		#if 1
 		V.push_back(s);
-#else
+		#else
 		/* TODO: change the 1 to a 0 above and make sure you understand
 		 * what is going wrong.  See the test() function above...  */
 		V[j++] = s;
