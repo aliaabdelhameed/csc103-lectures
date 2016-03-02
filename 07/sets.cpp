@@ -36,8 +36,18 @@ set<int> intersect(const set<int>& s1, const set<int>& s2) {
 	/* IDEA: go through every element in one of the sets,
 	 * search for that element in the other set, and add
 	 * to the intersection if you find it. */
-	for (set<int>::iterator i = s1.begin(); i != s1.end(); i++) {
-		if (s2.find(*i) != s2.end()) /* found it! :D */
+
+	set<int> smallerSet, largerSet;
+	if (s1.size() < s2.size()) {
+		smallerSet = s1;
+		largerSet = s2;
+	} else { // doesn't matter if they are the same size
+		smallerSet = s2;
+		largerSet = s1;
+	}
+
+	for (set<int>::iterator i = smallerSet.begin(); i != smallerSet.end(); i++) {
+		if (largerSet.find(*i) != largerSet.end()) /* found it! :D */
 			I.insert(*i);
 	}
 	return I;
@@ -46,6 +56,9 @@ set<int> intersect(const set<int>& s1, const set<int>& s2) {
 	 * performance?  If so, modify this function to choose the roles
 	 * dynamically (every time this is called) so as to maximize
 	 * performance.
+	 *
+	 * Yes, choosing the set with fewer elements to loop through is
+	 * more efficient.
 	 * */
 }
 
@@ -84,8 +97,18 @@ void setTest2() {
 
 int main(void)
 {
+	/* testing out intersect
+	set<int> s1 = {2,3,4,5,6,7};
+	set<int> s2 = {1,2,4,7,11,44};
+	
+	for (int const& n : intersect(s1, s2)) {
+		cout << n << " ";
+	}
+	cout << endl;
+	*/
+
 	//setTest();
 	//setTest2();
-	intTest();
+	//intTest();
 	return 0;
 }
