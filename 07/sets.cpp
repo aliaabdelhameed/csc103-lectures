@@ -4,6 +4,8 @@ using std::cout;
 using std::endl;
 #include <set> /* <-- new stuff. */
 using std::set;
+#include <vector>
+using std::vector;
 #include <string>
 using std::string;
 #include <cstdio>
@@ -58,11 +60,37 @@ set<int> intersect(const set<int>& s1, const set<int>& s2) {
 	 * performance.
 	 *
 	 * Yes, choosing the set with fewer elements to loop through is
-	 * more efficient.
+	 * more efficient because there are fewer elements to compare.
 	 * */
 }
 
 /* TODO: write a function that returns the union of two sets */
+/* go through both of the sets and add elements that are not
+ * already in the union of the two sets.
+ * if there is a repeat, skip it. */
+
+set<int> getUnion(const set<int>& s1, const set<int>& s2) {
+	set<int> U, other;
+
+	// comparing the size of the two sets because
+	// if U starts as being the larger set, there are fewer
+	// elements to check
+	if (s1.size() < s2.size()) { 
+		U = s1;
+		other = s2;
+	} else { // doesn't matter if they are the same size
+		U = s2;
+		other = s1;
+	}
+	
+	for (set<int>::iterator i = other.begin(); i != other.end(); i++) {
+		if (U.find(*i) == U.end()) { // if i is not already in the union set
+			U.insert(*i); // add i to the union
+		}
+	}
+	return U;
+}
+
 
 /* TODO: emulate the insert function for the set, but for a vector.
  * That is, write a function that takes a vector (say of integers)
@@ -70,10 +98,35 @@ set<int> intersect(const set<int>& s1, const set<int>& s2) {
  * not already present*. You can return a boolean indicating whether
  * or not x insertion took place. */
 
+bool insert(vector<int>& V, int x) {
+	for (size_t i = 0; i < V.size(); i++) {
+		if (V[i] == x) { // if x is already in V
+			return false;
+		}
+	}
+	V.push_back(x);
+	return true;
+}
+
 /* TODO: write a function that removes a value from a vector if it
  * is present.  It should take a vector and a value x, and remove
  * x if it is in the vector. NOTE: you don't have to preserve the
  * order of the other elements. */
+
+void remove(vector<int>& V, int x) {
+	for (size_t i = 0; i < V.size(); i++) {
+		if (V[i] == x) { // desired element to remove is found
+			for (size_t j = i; j < V.size() - 1; j++) {
+				// shift the elements down one
+				V[j] = V[j + 1];
+			}
+			V.pop_back(); // to get rid of the last element
+						// which was already shifted down
+			break; // done once x is removed (elements are shifted down)
+	
+		}
+	}
+}
 
 void intTest() {
 	set<int> s1 = {2,3,4,5,6,7};
@@ -97,15 +150,34 @@ void setTest2() {
 
 int main(void)
 {
-	/* testing out intersect
 	set<int> s1 = {2,3,4,5,6,7};
 	set<int> s2 = {1,2,4,7,11,44};
 	
+	cout << "The intersection of the sets is: " << endl;
 	for (int const& n : intersect(s1, s2)) {
 		cout << n << " ";
 	}
 	cout << endl;
-	*/
+	
+	cout << "The union of the sets is: " << endl;
+	for (int const& n : getUnion(s1,s2)) {
+		cout << n << " ";
+	}
+	cout << endl;
+
+	static std::vector<int> V = {2, 8, 1, 3, 5};
+	cout << insert(V,9) << endl;
+	cout << insert(V,2) << endl;
+	for (size_t i = 0; i < V.size(); i++) {
+		cout << V[i] << " ";
+	}
+	cout << endl;
+
+	remove(V,8);
+	for (size_t i = 0; i < V.size(); i++) {
+		cout << V[i] << " ";
+	}
+	cout << endl;
 
 	//setTest();
 	//setTest2();
