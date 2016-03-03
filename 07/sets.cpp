@@ -153,12 +153,6 @@ int main(void)
 	set<int> s1 = {2,3,4,5,6,7};
 	set<int> s2 = {1,2,4,7,11,44};
 	
-	cout << "The intersection of the sets is: " << endl;
-	for (int const& n : intersect(s1, s2)) {
-		cout << n << " ";
-	}
-	cout << endl;
-	
 	cout << "The union of the sets is: " << endl;
 	for (int const& n : getUnion(s1,s2)) {
 		cout << n << " ";
@@ -166,8 +160,8 @@ int main(void)
 	cout << endl;
 
 	static std::vector<int> V = {2, 8, 1, 3, 5};
-	cout << insert(V,9) << endl;
-	cout << insert(V,2) << endl;
+	insert(V,9);
+	insert(V,2);
 	for (size_t i = 0; i < V.size(); i++) {
 		cout << V[i] << " ";
 	}
@@ -181,6 +175,6 @@ int main(void)
 
 	//setTest();
 	//setTest2();
-	//intTest();
+	intTest();
 	return 0;
 }
