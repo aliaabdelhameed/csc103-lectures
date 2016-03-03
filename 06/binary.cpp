@@ -28,6 +28,8 @@ int main() {
 	
 	if (binary(V,5)) {
 		cout << "The vector has a 5!" << endl;
+	} else {
+		cout << "The vector does not have a 5." << endl;
 	}
 	
 	return 0;
@@ -80,12 +82,12 @@ bool binary(const vector<int>& V, int x) {
 	rightBound = V.size() - 1;
 	currPos = (leftBound + rightBound) / 2;
 
-	while (currPos >= leftBound && currPos <= rightBound) {
+	while (leftBound < rightBound) {
 		if (x < V[currPos]) {
 			rightBound = currPos;
 		} else if (x > V[currPos]) {
 			leftBound = currPos;
-		} else { // x == V[currPos]
+		} else if (x == V[currPos]) { // x == V[currPos]
 			return true;
 		}
 		currPos = (leftBound + rightBound) / 2;
