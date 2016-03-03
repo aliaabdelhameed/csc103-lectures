@@ -75,19 +75,20 @@ void sort(vector<string>& V) {
 
 // the vector V should already be sorted
 bool binary(const vector<int>& V, int x) {
-	int start, end, position;
-	start = 0;
-	end = V.size() - 1;
-	position = (start + end) / 2;
-	while (position >= start && position <= end) {
-		if (x < V[position]) {
-			end = position;
-		} else if (x > V[position]) {
-			start = position;
-		} else if (x == V[position]) {
+	int leftBound, rightBound, currPos;
+	leftBound = 0;
+	rightBound = V.size() - 1;
+	currPos = (leftBound + rightBound) / 2;
+
+	while (currPos >= leftBound && currPos <= rightBound) {
+		if (x < V[currPos]) {
+			rightBound = currPos;
+		} else if (x > V[currPos]) {
+			leftBound = currPos;
+		} else { // x == V[currPos]
 			return true;
 		}
-		position = (start + end) / 2;
+		currPos = (leftBound + rightBound) / 2;
 	}
 	return false;
 }
