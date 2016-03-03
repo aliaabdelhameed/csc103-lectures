@@ -25,7 +25,7 @@ int main() {
 	for (size_t i = 0; i < V.size(); i++) {
 		cout << V[i] << endl;
 	}
-	
+
 	if (binary(V,5)) {
 		cout << "The vector has a 5!" << endl;
 	} else {
