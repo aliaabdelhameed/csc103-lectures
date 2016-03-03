@@ -84,9 +84,9 @@ bool binary(const vector<int>& V, int x) {
 
 	while (leftBound < rightBound) {
 		if (x < V[currPos]) {
-			rightBound = currPos;
+			rightBound = currPos - 1;
 		} else if (x > V[currPos]) {
-			leftBound = currPos;
+			leftBound = currPos + 1;
 		} else if (x == V[currPos]) { // x == V[currPos]
 			return true;
 		}
