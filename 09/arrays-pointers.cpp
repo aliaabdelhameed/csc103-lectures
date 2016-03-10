@@ -4,6 +4,9 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+void swap(int *x, int *y);
+void circularShift(int A[], const int size, int shift);
+
 int main() {
 	/* ARRAYS: OVERVIEW
 	 * Arrays in C/C++: kind of like a "dumb" version of std::vector.
@@ -64,8 +67,10 @@ int main() {
 	/* 3. read/write using "dereference operator" */
 
 	cout << "this is what's at the address stored in p: " << *p  << endl;
-	(*p)++;
+	(*p)++; // x becomes 18
 	cout << "p == " << p << "\tx == " << x << endl;
+
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
 	/* TODO: think carefully, and see if you can predict the output of
 	 * the following code before you run it: */
@@ -74,10 +79,11 @@ int main() {
 	cout << "p == " << p << "\tx == " << x << endl;
 	cout << "q == " << q << "\ty == " << y << endl;
 	cout << "::: setting p = q;\n";
-	p = q;
-	(*q)++;
+	p = q; // p points to where q is pointing, which is at y
+	(*q)++; // y becomes 24
 	cout << "p == " << p << "\tx == " << x << endl;
 	cout << "q == " << q << "\ty == " << y << endl;
+	cout << "*p == " << *p << "\tThis is the same as *q and y" << endl;
 
 	/* Back to arrays for a moment:  what does the bracket notation (A[i])
 	 * actually mean?  It is simply an addition of pointers, followed by
@@ -86,16 +92,51 @@ int main() {
 	 * write i[A] (but I don't recommend it!) */
 	char B[10];
 	for (size_t i = 0; i < 10; i++) {
-		B[i] = 'a' + i;
+		B[i] = 'a' + i; // loops through and gets first 10 lowercase letters
 	}
+	
+	// prints out contents of array B
 	for (size_t i = 0; i < 10; i++) {
 		cout << i << "[B] == " << i[B] << endl;
 	}
 
-	return 0;
 	/* TODO: declare another pointer (say p2) to a character, initialize it
 	 * just as we did before, and print out (p+i) and then (p2+i) for small
 	 * values of i. Notice that the difference in memory addresses changes. */
+	cout << "Declaring pointer p2 to a character: " << endl;
+	char *p2;
+	char c = 'j';
+	p2 = &c;
+
+	for (int i = 0; i < 5; i++) {
+		cout << "(p+i) == " << (p+i) << '\t';
+		cout << "(p2+i) == " << (p2+i) << endl;
+	}
+
+	cout << "Swapping two pointers: " << endl;
+	int *p3, *p4;
+	int num1 = 5, num2 = 10;
+	p3 = &num1;
+	p4 = &num2;
+	cout << "p3 == " << p3 << "\tnum1 == " << num1 << "\t*p3 == " << *p3 << endl;
+	cout << "p4 == " << p4 << "\tnum2 == " << num2 << "\t*p4 == " << *p4 << endl;
+
+	swap(p3,p4);
+	cout << "p3 == " << p3 << "\tnum1 == " << num1 << "\t*p3 == " << *p3 << endl;
+	cout << "p4 == " << p4 << "\tnum2 == " << num2 << "\t*p4 == " << *p4 << endl;
+
+	int C[5];
+	for (size_t i = 0; i < 5; i++) {
+		C[i] = i;
+	}
+	
+	circularShift(C, 5, 2);
+	for (size_t i = 0; i < 5; i++) {
+		cout << C[i] << " ";
+	}
+	cout << endl;
+
+	return 0;
 }
 
 /* TODO: write a function that returns void, and takes two
@@ -103,8 +144,15 @@ int main() {
  * memory locations.  Note: part of this exercise is understanding
  * what I'm asking for...
  * */
+void swap(int *x, int *y) {
+	int temp;
+	temp = *x; // temp has value x is pointing to
+	*x = *y; // value x points to changes to value that y points to
+	*y = temp; // y points to the value that x used to point to
+}
 
 /* TODO: Can you guess what the type of &p is, if the type of p is int* ? */
+// &p is a type int* because it is the reference for p?
 
 /* TODO: write a function that performs a "circular shift" on
  * an array of integers.  For example, if the input array
@@ -115,4 +163,18 @@ int main() {
  * allocate the same, fixed amount of storage.  No vectors.  No additional
  * arrays.  Just a few integers.  Try it!  (Kind of hard though.)
  * */
-
+void circularShift(int A[], const int size, const int shift) {
+	int prevValue; // previous value
+	for (int i = 0; i < shift; i++) { // shift i times
+		for (int j = 0; j < size; j++) { // everything rotate one over
+			if (j == 0) {
+				prevValue = A[j]; // temp stores value in index 0
+				A[j] = A[size - 1]; // take the last element, put it in index 1
+			} else { // always happens after the if statement
+				int temp2 = A[j];
+				A[j] = prevValue;
+				prevValue = temp2;
+			}
+		}
+	}
+}
