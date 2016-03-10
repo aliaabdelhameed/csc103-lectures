@@ -6,6 +6,7 @@ using std::endl;
 
 void swap(int *x, int *y);
 void circularShift(int A[], const int size, int shift);
+void reverse(int A[], int startIndex, int endIndex);
 
 int main() {
 	/* ARRAYS: OVERVIEW
@@ -125,17 +126,26 @@ int main() {
 	cout << "p3 == " << p3 << "\tnum1 == " << num1 << "\t*p3 == " << *p3 << endl;
 	cout << "p4 == " << p4 << "\tnum2 == " << num2 << "\t*p4 == " << *p4 << endl;
 
-	int C[5];
-	for (size_t i = 0; i < 5; i++) {
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "Circular Shift: " << endl;
+	int size = 15;
+	int C[size];
+	for (size_t i = 0; i < size; i++) {
 		C[i] = i;
 	}
-	
-	circularShift(C, 5, 2);
-	for (size_t i = 0; i < 5; i++) {
+
+	for (size_t i = 0; i < size; i++) {
 		cout << C[i] << " ";
 	}
-	cout << endl;
+	cout << endl; 
 
+	circularShift(C, size, 5);
+
+	for (size_t i = 0; i < size; i++) {
+		cout << C[i] << " ";
+	}
+
+	cout << endl;
 	return 0;
 }
 
@@ -163,18 +173,37 @@ void swap(int *x, int *y) {
  * allocate the same, fixed amount of storage.  No vectors.  No additional
  * arrays.  Just a few integers.  Try it!  (Kind of hard though.)
  * */
+
+void circularShift(int A[], const int size, const int shift) {
+	reverse(A,0,size - 1); // reverse the entire array
+	reverse(A,0,shift - 1); // reverse elements up to the number you want to shift
+	reverse(A,shift,size - 1); // reverse the rest of the array separately
+}
+
+// reverse the values in A, starting from the start index to end index, inclusively
+void reverse(int A[], int start, int end) {
+	for (size_t i = 0; i < (end - start + 1) / 2; i++) {
+		int temp = A[start + i];
+		A[start + i] = A[end - i];
+		A[end - i] = temp;
+	}
+}
+
+/*
 void circularShift(int A[], const int size, const int shift) {
 	int prevValue; // previous value
+	
 	for (int i = 0; i < shift; i++) { // shift i times
+		
 		for (int j = 0; j < size; j++) { // everything rotate one over
 			if (j == 0) {
 				prevValue = A[j]; // temp stores value in index 0
 				A[j] = A[size - 1]; // take the last element, put it in index 1
 			} else { // always happens after the if statement
 				int temp2 = A[j];
-				A[j] = prevValue;
+				A[j] = prevValue; // shift the value on the right to the left
 				prevValue = temp2;
 			}
 		}
 	}
-}
+}*/
