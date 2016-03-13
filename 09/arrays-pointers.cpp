@@ -192,18 +192,17 @@ void reverse(int A[], int start, int end) {
 /*
 void circularShift(int A[], const int size, const int shift) {
 	int prevValue; // previous value
-	
 	for (int i = 0; i < shift; i++) { // shift i times
-		
 		for (int j = 0; j < size; j++) { // everything rotate one over
 			if (j == 0) {
 				prevValue = A[j]; // temp stores value in index 0
 				A[j] = A[size - 1]; // take the last element, put it in index 1
 			} else { // always happens after the if statement
-				int temp2 = A[j];
+				int temp = A[j];
 				A[j] = prevValue; // shift the value on the right to the left
-				prevValue = temp2;
+				prevValue = temp;
 			}
 		}
 	}
-}*/
+}
+*/
