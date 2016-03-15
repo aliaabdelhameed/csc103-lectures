@@ -14,8 +14,7 @@
 #include <cstdlib> // needed for size_t
 
 /* NOTE: our rectangles will only have integer sides.  I like integers. */
-class rectangle
-{
+class rectangle {
 public:
 
 	/* what data is required to represent a rectangle?

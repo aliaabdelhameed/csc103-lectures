@@ -13,15 +13,25 @@ using std::cout;
 
 int main(void)
 {
-	rectangle R;
+	/*rectangle R;
 	R.width = 8;
-	R.height = 5;
+	R.height = 5;*/
 	/* TODO: use the constructor to shorten the code above. */
+	rectangle R(8,5);
+
 	cout << "Area of R is " << R.area() << "\n";
 	R.draw(); // NOTE: there's a hidden parameter in these function calls.
 			  // the "this" pointer gives us access to whose member function
 			  // is being called...
 	/* TODO: test out the other functions.  Not exciting, but won't take long
 	 * if you know what is going on.  */
+	cout << "Perimeter of R is " << R.perimeter() << "\n";
+
+	if (R.isSquare()) {
+		cout << "R is a square\n";
+	} else {
+		cout << "R is not a square\n";
+	}
+
 	return 0;
 }
