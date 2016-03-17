@@ -11,8 +11,7 @@ using std::cout;
  * this program manually using g++.  Run g++ -c first to produce
  * object files, and then run g++ again to link them into an executable. */
 
-int main(void)
-{
+int main(void) {
 	/*rectangle R;
 	R.width = 8;
 	R.height = 5;*/

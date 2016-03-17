@@ -34,9 +34,15 @@ void rectangle::draw() {
 	 * */
 	/* draw with star characters... */
 	for (size_t i = 0; i < height; i++) {
-		for (size_t i = 0; i < width; i++) {
-			cout << "*";
+		cout << "* "; // left side will have height number of stars
+		for (size_t j = 0; j < width - 2; j++) {
+			if (i == 0 || i == height - 1) {
+				cout << "* "; // prints out a row of stars if
+							// it's the top or bottom of the rect
+			} else {
+				cout << "  ";
+			}
 		}
-		cout << endl;
+		cout << "*" << endl; // right side of rect
 	}
 }
