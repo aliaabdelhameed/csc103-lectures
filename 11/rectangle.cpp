@@ -46,3 +46,13 @@ void rectangle::draw() {
 		cout << "*" << endl; // right side of rect
 	}
 }
+
+int rectangle::compareArea(rectangle otherRect) {
+	if ((*this).area() > otherRect.area()) {
+		return 1;
+	} else if ((*this).area() < otherRect.area()) {
+		return -1;
+	} else {
+		return 0;
+	}
+}

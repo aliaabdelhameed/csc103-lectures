@@ -44,10 +44,11 @@ public:
 	size_t perimeter(); // return the perimeter
 	bool isSquare(); // is this rectangle actually a square?
 	void draw(); // print a crappy representation to the console.
-
+	int compareArea(rectangle otherRect);
 	/* here are the member variables that we need to store
 	 * the information that determines a rectangle:
 	 * */
+
 private: // under the hood stuff
 	// nothing is private for the moment.
 

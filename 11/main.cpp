@@ -17,6 +17,10 @@ int main(void) {
 	R.height = 5;*/
 	/* TODO: use the constructor to shorten the code above. */
 	rectangle R(8,5);
+	rectangle R2(4,1);
+
+	cout << R.compareArea(R2) << "\n"; // 1
+
 
 	cout << "Area of R is " << R.area() << "\n";
 	R.draw(); // NOTE: there's a hidden parameter in these function calls.
