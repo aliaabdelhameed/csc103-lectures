@@ -1,5 +1,6 @@
 #include <iostream>
 using std::cout;
+using std::endl;
 
 void f(int n) {
 	if (n == 0) {
@@ -14,11 +15,20 @@ void f(int n) {
 }
 
 /* TODO: write down the other examples from lecture */
+int factorial(int n) {
+	if (n == 0 || n == 1) {
+		return 1;
+	} else {
+		return n * factorial(n - 1);
+	}
+}
+
 /* TODO: practice proving things by mathematical induction. */
 
-int main(void)
-{
+int main(void) {
 	f(4);
 	cout << "\n";
+
+	cout << factorial(5) << endl;
 	return 0;
 }
