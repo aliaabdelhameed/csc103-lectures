@@ -69,3 +69,5 @@ int main()
 		cout << search(A,100,x) << endl;
 	return 0;
 }
+
+/* TODO: try to write the "memoized" version of fibonacci */
